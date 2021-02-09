@@ -1,9 +1,7 @@
 ﻿using System.Threading.Tasks;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
-
 
 public class Fracture : MonoBehaviour 
 {
@@ -14,21 +12,21 @@ public class Fracture : MonoBehaviour
 
 	[System.NonSerialized] private List<Vector3> points;
 
-	static ObjectPool<ConvexHullCalculator> calculators = new ObjectPool<ConvexHullCalculator>(() => new ConvexHullCalculator());
-	static ObjectPool<List<Vector3>>  vertsPool   = new ObjectPool<List<Vector3>>(() => new List<Vector3>());
-	static ObjectPool<List<int>>      trisPool    = new ObjectPool<List<int>>(()     => new List<int>());
-	static ObjectPool<List<Vector3>>  normalsPool = new ObjectPool<List<Vector3>>(() => new List<Vector3>());
+	private static ObjectPool<ConvexHullCalculator> calculators = new ObjectPool<ConvexHullCalculator>(() => new ConvexHullCalculator());
+	private static ObjectPool<List<Vector3>>  vertsPool   = new ObjectPool<List<Vector3>>(() => new List<Vector3>());
+	private static ObjectPool<List<int>>      trisPool    = new ObjectPool<List<int>>(()     => new List<int>());
+	private static ObjectPool<List<Vector3>>  normalsPool = new ObjectPool<List<Vector3>>(() => new List<Vector3>());
 
 	private bool _generatedMesh;
 	private bool _disableAtFixedUpdate = false;
 	private Task _meshGenerationTask;
 	private InsideMeshCalculator _insideMeshCalc;
 
-	volatile float mass;
-	volatile Mesh mesh = null;
-	volatile List<Vector3> verts;
-	volatile List<int> tris;
-	volatile List<Vector3> normals;
+	private volatile float mass;
+	private volatile Mesh mesh = null;
+	private volatile List<Vector3> verts;
+	private volatile List<int> tris;
+	private volatile List<Vector3> normals;
 
 	public float Mass {get {return mass;}}
 

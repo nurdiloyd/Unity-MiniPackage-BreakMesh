@@ -11,14 +11,16 @@ public class Breaker : MonoBehaviour
 	public void Break(Fracture fracture, Vector3 world) {
 		//var local = fracture.transform.InverseTransformPoint(world);
 		Profiler.BeginSample("Do fracture call");
+		
 		//fracture.DoFracture(local);
 		fracture.DoFracture();
+		
 		Profiler.EndSample();
 		
-		StartCoroutine(Stupid(world));
+		StartCoroutine(Explode(world));
 	}
 		
-	private IEnumerator Stupid(Vector3 worldPoint) {
+	private IEnumerator Explode(Vector3 worldPoint) {
 		yield return null;
 		yield return null;
 		yield return null;
