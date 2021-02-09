@@ -1,0 +1,34 @@
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.Profiling;
+
+public class Breaker : MonoBehaviour 
+{
+	[SerializeField] protected float explosionRadius;
+	[SerializeField] protected float explosionForce;
+
+
+	public void Break(Fracture fracture, Vector3 world) {
+		//var local = fracture.transform.InverseTransformPoint(world);
+		Profiler.BeginSample("Do fracture call");
+		//fracture.DoFracture(local);
+		fracture.DoFracture();
+		Profiler.EndSample();
+		
+		StartCoroutine(Stupid(world));
+	}
+		
+	private IEnumerator Stupid(Vector3 worldPoint) {
+		yield return null;
+		yield return null;
+		yield return null;
+
+		foreach (var coll in Physics.OverlapSphere(worldPoint, explosionRadius)) {
+			var otherRb = coll.GetComponent<Rigidbody>();
+
+			if (otherRb != null) {
+				otherRb.AddExplosionForce(explosionForce, worldPoint, explosionRadius);
+			}
+		}
+	}
+}

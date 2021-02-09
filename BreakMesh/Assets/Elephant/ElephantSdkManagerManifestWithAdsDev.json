@@ -1,0 +1,16 @@
+{
+  "sdkList": [
+    {
+      "downloadUrl": "https://elephant-sdks.s3.amazonaws.com/dev/ElephantSDKDev.unitypackage",
+      "sdkName": "Elephant",
+      "version": "v1.3.1",
+      "type": "internal"
+    },
+    {
+      "downloadUrl": "https://elephant-sdks.s3.amazonaws.com/dev/RollicGamesMopubDev.unitypackage",
+      "sdkName": "RollicGames",
+      "version": "v1.3.1",
+      "type": "internal"
+    }
+  ]
+}
